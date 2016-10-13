@@ -16,6 +16,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
+find_package( OpenCV REQUIRED  )
 #uncomment if you have defined messages
 #rosbuild_genmsg()
 #uncomment if you have defined services
@@ -33,3 +34,7 @@ rosbuild_add_executable(scanRegistration src/scanRegistration.cpp)
 rosbuild_add_executable(laserOdometry src/laserOdometry.cpp)
 rosbuild_add_executable(laserMapping src/laserMapping.cpp)
 rosbuild_add_executable(transformMaintenance src/transformMaintenance.cpp)
+target_link_libraries(scanRegistration ${OpenCV_LIBRARIES})
+target_link_libraries(laserOdometry ${OpenCV_LIBRARIES})
+target_link_libraries(laserMapping ${OpenCV_LIBRARIES})
+target_link_libraries(transformMaintenance ${OpenCV_LIBRARIES})
